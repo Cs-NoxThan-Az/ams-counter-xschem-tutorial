@@ -347,4 +347,4 @@ Once you understand this example, try:
 - Add a reset input and verify power-on behavior
 - Measure propagation delays from analog edges into digital events (or vice-versa)
 
-For common issues, see `docs/TROUBLESHOOTING.md`.
+For common issues, see [`docs/TROUBLESHOOTING.md`](./TROUBLESHOOTING.md).

@@ -1,0 +1,1 @@
+execute 1 sh -c "cd $netlist_dir; iverilog -o counter [abs_sym_path counter.v]"

@@ -1,5 +1,4 @@
-v {xschem version=3.4.5 file_version=1.2
-}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -58,7 +57,6 @@ hilight_wave=-1
 y2=20e-6}
 N -300 -690 -250 -690 {lab=CLK}
 N 110 -690 150 -690 {bus=1 lab=count_out[3..0]}
-N 110 -690 110 -650 {lab=count_out[3..0]}
 N -110 -690 110 -690 {bus=1 lab=count_out[3..0]}
 N -460 -170 -460 -130 {
 lab=CLK}
@@ -210,39 +208,30 @@ N 970 -260 1220 -260 {
 lab=#net3}
 N 1060 -20 1220 -20 {
 lab=0}
-C {devices/code_shown.sym} 1820 -350 0 0 {name=NGSPICE only_toplevel=true 
+C {netlist.sym} 1500 -350 0 0 {name=NGSPICE only_toplevel=true 
 value="
 .temp 27
 
-.option method=gear
+*.option method=gear
 .param VCC=1.5
 
 .control
 save all
-tran 0.1n 50u
-*set wr_singlescale
-*set wr_vecnames
-*option numdgt=4 
+tran 1n 50u
 *plot i(Vmeas) i(Vmeas1) 
 remzerovec
 write current_mirror_cosim.raw
-
 .endc
-"}
-C {devices/code_shown.sym} 1820 -430 0 0 {name=MODEL only_toplevel=true
-format="tcleval( @value )"
-value=".lib cornerMOSlv.lib mos_tt
 "}
 C {lab_pin.sym} -300 -690 0 0 {name=p3 lab=CLK}
 C {lab_pin.sym} 150 -690 0 1 {name=p5 lab=count_out[3..0]}
-C {parax_cap.sym} 110 -640 0 0 {name=C2[3..0] gnd=0 value=1f m=1}
 C {launcher.sym} 1050 -435 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/[file tail [file rootname [xschem get current_name]]].raw tran"
 }
 C {launcher.sym} 1050 -385 0 0 {name=h1
 descr="Icarusate Design" 
-tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -o counter [abs_sym_path counter.v]\\""}
+tclcommand="execute 1 sh -c \\"cd $netlist_dir; iverilog -o counter [abs_sym_path ./counter.v]\\""}
 C {counter.sym} -180 -690 0 0 {name=a1 model=counter
 
 device_model=".model counter d_cosim simulation=\\"ivlng\\" sim_args=[\\"counter\\"] delay=0"
@@ -251,24 +240,21 @@ tclcommand="edit_file [abs_sym_path counter.v]"}
 C {vsource.sym} -460 -100 0 0 {name=V2 value="pulse 0 'VCC' 500n 10n 10n 490n 1u" savecurrent=false}
 C {lab_wire.sym} -460 -160 0 0 {name=p2 sig_type=std_logic lab=CLK}
 C {lab_wire.sym} -460 -40 0 0 {name=p10 sig_type=std_logic lab=0}
-C {sg13g2_pr/sg13_lv_nmos.sym} 110 -90 0 1 {name=M1
+C {nmos4.sym} 110 -90 0 1 {name=M1
 l=1u
 w=2u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
+device_model=".model nm nmos level=54 version=4.8.3"
 }
 C {isource.sym} 90 -400 0 0 {name=I0 value=10u}
 C {vsource.sym} -70 -150 0 0 {name=V1 value=1.5 savecurrent=false}
 C {lab_wire.sym} 25 -20 0 0 {name=p14 sig_type=std_logic lab=0}
-C {sg13g2_pr/sg13_lv_nmos.sym} 250 -90 0 0 {name=M2
+C {nmos4.sym} 250 -90 0 0 {name=M2
 l=1u
 w=2u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
 }
 C {lab_wire.sym} 210 -90 0 0 {name=p11 sig_type=std_logic lab=Vg}
 C {res.sym} 270 -400 0 0 {name=R5
@@ -277,75 +263,59 @@ footprint=1206
 device=resistor
 m=1}
 C {ammeter.sym} 270 -300 0 0 {name=VAMM2 savecurrent=0 spice_ignore=0}
-C {sg13g2_pr/sg13_lv_nmos.sym} 450 -210 0 0 {name=M3
+C {nmos4.sym} 450 -210 0 0 {name=M3
 l=0.13u
 w=10u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
 }
-C {sg13g2_pr/sg13_lv_nmos.sym} 450 -90 0 0 {name=M4
+C {nmos4.sym} 450 -90 0 0 {name=M4
 l=1u
 w=2u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
 }
 C {lab_wire.sym} 400 -90 0 0 {name=p12 sig_type=std_logic lab=Vg}
 C {lab_wire.sym} 410 -210 0 0 {name=p13 sig_type=std_logic lab=count_out0}
-C {sg13g2_pr/sg13_lv_nmos.sym} 700 -210 0 0 {name=M5
+C {nmos4.sym} 700 -210 0 0 {name=M5
 l=0.13u
 w=10u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
 }
-C {sg13g2_pr/sg13_lv_nmos.sym} 700 -90 0 0 {name=M6
+C {nmos4.sym} 700 -90 0 0 {name=M6
 l=1u
 w=2u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
 }
 C {lab_wire.sym} 650 -90 0 0 {name=p8 sig_type=std_logic lab=Vg}
 C {lab_wire.sym} 660 -210 0 0 {name=p15 sig_type=std_logic lab=count_out1}
-C {sg13g2_pr/sg13_lv_nmos.sym} 950 -210 0 0 {name=M7
+C {nmos4.sym} 950 -210 0 0 {name=M7
 l=0.13u
 w=10u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
 }
-C {sg13g2_pr/sg13_lv_nmos.sym} 950 -90 0 0 {name=M8
+C {nmos4.sym} 950 -90 0 0 {name=M8
 l=1u
 w=2u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
 }
 C {lab_wire.sym} 900 -90 0 0 {name=p7 sig_type=std_logic lab=Vg}
 C {lab_wire.sym} 910 -210 0 0 {name=p16 sig_type=std_logic lab=count_out2}
-C {sg13g2_pr/sg13_lv_nmos.sym} 1200 -210 0 0 {name=M9
+C {nmos4.sym} 1200 -210 0 0 {name=M9
 l=0.13u
 w=10u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
 }
-C {sg13g2_pr/sg13_lv_nmos.sym} 1200 -90 0 0 {name=M10
+C {nmos4.sym} 1200 -90 0 0 {name=M10
 l=1u
 w=2u
-ng=1
 m=1
-model=sg13_lv_nmos
-spiceprefix=X
+model=nm
 }
 C {lab_wire.sym} 1150 -90 0 0 {name=p1 sig_type=std_logic lab=Vg}
 C {lab_wire.sym} 1160 -210 0 0 {name=p4 sig_type=std_logic lab=count_out3}

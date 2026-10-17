@@ -9,13 +9,11 @@ This repository is a beginner-friendly, end-to-end example of **mixed-signal co-
 
 You will build and run a simple **4-bit synchronous counter** written in Verilog, embed it as a symbol in Xschem, and drive an **analog current-mirror testbench** that converts the counter bits into a measurable analog current/voltage.
 
-> Note: The **IHP SG13G2 PDK** symbols/models are **not** redistributed here. This repo assumes you already have the PDK installed (e.g., via OpenPDKs). The example testbench uses `sg13_lv_nmos` devices.
-
 ## What you get
 
-- A minimal Verilog counter (`xschem/counter.v`)
+- A minimal Verilog counter ([`xschem/counter.v`](xschem/counter.v))
 - A reusable Xschem symbol (`xschem/counter.sym`) and example schematic (`xschem/current_mirror_cosim.sch`)
-- A working Ngspice netlist (`xschem/simulation/current_mirror_cosim.spice`)
+- A working Ngspice netlist ([`xschem/simulation/current_mirror_cosim.spice`](xschem/simulation/current_mirror_cosim.spice))
 - Launchers inside the schematic for:
   - compiling Verilog with Icarus (`Icarusate Design`)
   - loading simulation results back into Xschem (`load waves`)
@@ -74,9 +72,9 @@ vvp tb
 
 ## Documentation
 
-- Start here: `docs/TUTORIAL.md`
-- Installation notes: `docs/INSTALL.md`
-- Common failures and fixes: `docs/TROUBLESHOOTING.md`
+- Start here: [`docs/TUTORIAL.md`](docs/TUTORIAL.md)
+- Installation notes: [`docs/INSTALL.md`](docs/INSTALL.md)
+- Common failures and fixes: [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md)
 
 ## Why this example is useful
 
@@ -87,8 +85,8 @@ Most “AMS” tutorials are either too abstract or assume commercial EDA tools.
 
 ## Contributing
 
-PRs are welcome. See `CONTRIBUTING.md`.
+PRs are welcome. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## License
 
-MIT License. See `LICENSE`.
+MIT License. See [`LICENSE`](LICENSE).

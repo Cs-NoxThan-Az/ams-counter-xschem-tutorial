@@ -37,10 +37,9 @@ $MARK_BEGIN
 # Point Xschem to:
 # - this repo (xschem/)  
 # - Xschem default libs (xschem_library + devices)
-# - IHP SG13G2 symbols (OpenPDKs)  
 #
 # NOTE: adjust the OpenPDKs paths if your install differs.
-set XSCHEM_LIBRARY_PATH "$env(AMS_DEMO_HOME)/xschem:/usr/share/xschem/xschem_library:/usr/share/xschem/xschem_library/devices:/usr/local/share/OpenPDKs/IHP-Open-PDK/ihp-sg13g2/libs.tech/xschem:/usr/local/share/OpenPDKs/IHP-Open-PDK/ihp-sg13g2/libs.tech/xschem/sg13g2_pr"
+set XSCHEM_LIBRARY_PATH "$env(AMS_DEMO_HOME)/xschem:/usr/share/xschem/xschem_library:/usr/share/xschem/xschem_library/devices"
 $MARK_END
 EOT
 

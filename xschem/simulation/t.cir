@@ -1,0 +1,15 @@
+* Test BSIM4 parameters
+
+.model nm nmos level=54 version=4.8.3
+
+.param VCC=1.5
+V1 vdd 0 vcc
+I0 net1 Vg 10u
+M1 Vg Vg 0 0 nm w=2u l=1u
+
+.control
+dc i0 0 20u .1u
+plot vg
+.endc
+.end
+
